@@ -1,0 +1,6 @@
+framework module Pods_Taps {
+  umbrella header "Pods-Taps-umbrella.h"
+
+  export *
+  module * { export * }
+}
