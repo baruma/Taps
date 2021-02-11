@@ -11,34 +11,21 @@ import PromiseKit
 
 class BreweryTablePresenter {
     var description: String = ""
+   // private var breweriesForView = [Brewery]()
     public var view: BreweryTableViewVC? = nil
+    
+    /// TODO: - Attach and Detach functions need to be here.
+    
+    /// REMARK: - This can be changed in the future to be able to rotate between tests and repositories.
     private let breweryRepository: BreweryRepositoryProtocol = BreweryDBResponseRepository()
     
     func fetchBreweries(city: String) {
-        // this bottom line doesn't work because it doesn't know that the class is behind the protocol which is good we dn't want these classes to know about each other
-//        breweryRepository.fetchBreweriesAPIResponse(cityForEndpoint: city)
         breweryRepository.getBreweries(city: city).done { breweries in
-            print(breweries)
+            //self.breweriesForView = breweries
+            self.view?.updateViewWithBreweries(breweries: breweries)
         }
     }
+    
+    /// doing this the view will never know when the presenter is ready.. instead the presenter should be telling the view to update.
+
 }
-
-
-/*
- #warning("Get the city name, domicile, postal code from CLPlacemark after you do this function.")s
- func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-     let currentLocation: CLLocation = locations[0]
-     
-     geoCodeManager.convertCoordinatesToHumanReadableLocation(location: locations.first!).done { placemark in
-         print(placemark.subAdministrativeArea)  // we want to pass this over to the GeoCoder.  You can use protocols or you can use PromiseKit but nothing async is happening so consider protocols
-     }
-
- }
- 
- func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-     let alert = UIAlertController(title: "Couldn't update the location!", message: "Something went wrong with locationManager", preferredStyle: .alert)
-
-     alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-     self.present(alert, animated: true)
- }
- */

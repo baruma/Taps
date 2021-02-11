@@ -11,4 +11,3 @@ import PromiseKit
  protocol BreweryRepositoryProtocol {
    func getBreweries(city: String) -> Promise<[Brewery]>
 }
-

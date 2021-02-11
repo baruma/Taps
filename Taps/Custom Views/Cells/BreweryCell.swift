@@ -39,8 +39,8 @@ class BreweryCell: UITableViewCell {
         
         horizontalStackView.translatesAutoresizingMaskIntoConstraints   = false
         horizontalStackView.axis                                        = .horizontal
-        horizontalStackView.distribution                                = .fillEqually
-        horizontalStackView.spacing                                     = 5.0
+        horizontalStackView.alignment                                   = .trailing
+        horizontalStackView.spacing                                     = 1.0
         
         // Vertical StackView Configuration - holds horizontal stackview and brewery name
         verticalStackView.addArrangedSubview(boldBreweryNameLabel)
@@ -65,7 +65,7 @@ class BreweryCell: UITableViewCell {
             verticalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             verticalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            verticalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+            verticalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
         ])
     }
 

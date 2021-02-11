@@ -115,6 +115,5 @@ class BreweryDBResponseRepository: BreweryRepositoryProtocol {
     
     // Parses Brewery, City and State information from payload response.  This name is fine since it just lives in the view.
     func breweryCellViewModel() {
-        
     }
 }

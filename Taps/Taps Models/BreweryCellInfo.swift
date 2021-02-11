@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct BreweryAtAGlance {
+/// MARK: NOTE - Consider changing this so it doesn't mention cell?
+struct BreweryCellInfo {
     let id: Int
     let name: String
     let city: String

@@ -17,15 +17,22 @@ class BreweryTableViewVC: UIViewController, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private let geoCodeManager = GeoCoderManager()
     private let breweryPresenter = BreweryTablePresenter()
+    
+    private var breweries = [Brewery]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationManagerServices()
         configureTableView()
         view.backgroundColor = .systemBackground
-        breweryPresenter.view = self // It's saying the view you want to talk to is me (via self).
+        breweryPresenter.view = self
     }
     
+    public func updateViewWithBreweries(breweries: [Brewery]) {
+        self.breweries = breweries
+        tableView.reloadData()
+    }
+        
     private func configureLocationManagerServices() {
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
@@ -35,7 +42,7 @@ class BreweryTableViewVC: UIViewController, CLLocationManagerDelegate {
             locationManager.startMonitoringSignificantLocationChanges()
         }
     }
-    
+
     private func configureTableView() {
         tableView = UITableView(frame: view.bounds)
         view.addSubview(tableView)
@@ -44,26 +51,6 @@ class BreweryTableViewVC: UIViewController, CLLocationManagerDelegate {
         tableView.register(BreweryCell.self, forCellReuseIdentifier: BreweryCell.reuseID)
     }
     
-//    func configure<Cell : ConfigurableCell, ResultType>(cell: Cell, fetchPromise: Promise<ResultType>) {
-//        fetchPromise.done { result in
-//            cell.configure(data: result as! Cell.DataType)  //JLI: Ideally, we shouldnt need ! or casting
-//        }.catch { error in
-//            let alertVC = UIAlertController(title: "Something went wrong!", message: "Try searching a place or restarting Sweater!", preferredStyle: .alert)
-//            let confirmAction = UIAlertAction(title: "OK", style: .default) { action in
-//                //
-//            }
-//            alertVC.addAction(confirmAction)
-//            //let errorMessage = presenter.parseError(error: error)
-//            //create ui controller with error message
-//            // create error alert vc here to present error.
-//
-//            // if there is an error you need to seal . reject in repository
-//            // you have to reject and go out
-//            print(error)
-//            self.presenter.parseNetworkErrors(error: error)
-//            self.present(alertVC, animated: true, completion: nil)
-//        }
-//    }
 }
 
 extension BreweryTableViewVC {
@@ -75,6 +62,7 @@ extension BreweryTableViewVC {
             let city = String(placemark.subAdministrativeArea!)
             self.breweryPresenter.fetchBreweries(city: city)
         }
+        
         tableView.reloadData()
     }
     
@@ -90,7 +78,7 @@ extension BreweryTableViewVC: UITableViewDelegate{}
 
 extension BreweryTableViewVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return breweries.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,12 +87,16 @@ extension BreweryTableViewVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BreweryCell.reuseID, for: indexPath) as! BreweryCell
-       // cell.textLabel!.text = "Dog Fish Head"
-        cell.subtitleCityLabel.text = "Boston"
-        cell.subtitleStateLabel.text = "MA"
-        cell.boldBreweryNameLabel.text = "AERONAUGHT"
+        cell.boldBreweryNameLabel.text = breweries[0].name
+        cell.subtitleCityLabel.text = breweries[0].city
+        cell.subtitleStateLabel.text = breweries[0].state
+        
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var breweryDetailVC = BreweryDetailVC()
+        
+        self.navigationController?.pushViewController(breweryDetailVC, animated: true)
+    }
 }
-
-
