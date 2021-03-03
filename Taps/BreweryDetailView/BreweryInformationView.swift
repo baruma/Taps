@@ -8,7 +8,13 @@
 import UIKit
 
 class BreweryInformationView: UIView {
-
+    
+    @IBOutlet weak var breweryLabelOutlet: UILabel!
+    @IBOutlet weak var cityLabelOutlet: UILabel!
+    @IBOutlet weak var stateLabelOutlet: UILabel!
+    @IBOutlet weak var websiteLabelOutlet: UILabel!
+    @IBOutlet weak var phoneLabelOutlet: UILabel!
+    
     override init(frame: CGRect) {
             super.init(frame: frame)
             configure()

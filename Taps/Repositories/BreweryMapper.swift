@@ -36,6 +36,7 @@ class BreweryMapper {
         return mappedBreweries
     }
     
-    /// Maps Brewery name, city and state to BreweryCell
-    func mapToBreweryAtAGlance() {}
+    /// Maps Brewery name, city and state to BreweryDetailView
+    /// Takes in a present Brewery (Same one used in the cell) and then use the information present in that.
+    func mapToBreweryInformationView() {}
 }

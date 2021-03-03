@@ -9,11 +9,11 @@ import UIKit
 
 class BreweryDetailVC: UIViewController {
     static let id = "BreweryInformationVC"
-
     let breweryInformationView = BreweryInformationView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         configureblah()
     }
     
@@ -24,7 +24,7 @@ class BreweryDetailVC: UIViewController {
             breweryInformationView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
             breweryInformationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             breweryInformationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            breweryInformationView.heightAnchor.constraint(equalToConstant: 200)
+            breweryInformationView.heightAnchor.constraint(equalToConstant: 250)
 
         ])
     }

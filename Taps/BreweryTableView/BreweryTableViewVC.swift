@@ -10,7 +10,7 @@ import CoreLocation
 
 class BreweryTableViewVC: UIViewController, CLLocationManagerDelegate {
         
-    // UI variables
+    // UI
     private var tableView: UITableView!
     
     // Manager and Swift Framework class declarations
@@ -24,7 +24,8 @@ class BreweryTableViewVC: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         configureLocationManagerServices()
         configureTableView()
-        view.backgroundColor = .systemBackground
+        //view.backgroundColor = .systemBackground
+        view.backgroundColor = .red
         breweryPresenter.view = self
     }
     
@@ -55,6 +56,7 @@ class BreweryTableViewVC: UIViewController, CLLocationManagerDelegate {
 
 extension BreweryTableViewVC {
     #warning("Get the city name, domicile, postal code from CLPlacemark after you do this function.")
+    #warning("This function might be doing too much by updating, converting and then asking to fetch breweries.")
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //let currentLocation: CLLocation = locations[0]
         
@@ -87,9 +89,10 @@ extension BreweryTableViewVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BreweryCell.reuseID, for: indexPath) as! BreweryCell
-        cell.boldBreweryNameLabel.text = breweries[0].name
-        cell.subtitleCityLabel.text = breweries[0].city
-        cell.subtitleStateLabel.text = breweries[0].state
+
+        cell.boldBreweryNameLabel.text = breweries[indexPath.row].name
+        cell.subtitleCityLabel.text = breweries[indexPath.row].city
+        cell.subtitleStateLabel.text = breweries[indexPath.row].state
         
         return cell
     }
@@ -97,6 +100,7 @@ extension BreweryTableViewVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var breweryDetailVC = BreweryDetailVC()
         
-        self.navigationController?.pushViewController(breweryDetailVC, animated: true)
+        /// MARK: - TODO: DO NOT allow this vc to know about the breweryDetailVC
+        self.navigationController?.pushViewController(breweryDetailVC, animated: true)  // the viewcontroller is grabbing the parent and tells it to push to the next vc and btw, it needs to be animated.  In fact, the child shouldn't even know who its parent is.
     }
 }

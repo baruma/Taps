@@ -10,14 +10,24 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var homeCoordinator: HomeCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {  guard let windowScene = (scene as? UIWindowScene) else { return }
-        let vc = BreweryTableViewVC()
-        window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene         = windowScene
-        window?.rootViewController  = UINavigationController(rootViewController: vc)
-        window?.makeKeyAndVisible()
+//        let vc                      = BreweryTableViewVC()
+//        window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)
+//        window?.windowScene         = windowScene
+//        window?.rootViewController  = UINavigationController(rootViewController: vc)
+//        window?.makeKeyAndVisible()
+
+        // The window reference is passed to the HomeCoordinator as a dependency so that it can be loaded later.  You've done DI before in BlackJack but here it is again.
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let homeCoordinator = HomeCoordinator(window: window)
+        self.window = window
+        self.homeCoordinator = homeCoordinator
+        
+        // The protocol function is being called and much like attach/detach in Sweater, the ViewController will be displayed.
+        homeCoordinator.start()
+       // return true
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
