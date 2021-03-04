@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HomeCoordinator: Coordinator {
+class BreweryTableViewVCCoordinator: Coordinator {
     //1
     private let window: UIWindow
     private let rootViewController: UINavigationController

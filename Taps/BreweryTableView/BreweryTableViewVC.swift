@@ -100,7 +100,6 @@ extension BreweryTableViewVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var breweryDetailVC = BreweryDetailVC()
         
-        /// MARK: - TODO: DO NOT allow this vc to know about the breweryDetailVC
         self.navigationController?.pushViewController(breweryDetailVC, animated: true)  // the viewcontroller is grabbing the parent and tells it to push to the next vc and btw, it needs to be animated.  In fact, the child shouldn't even know who its parent is.
     }
 }
