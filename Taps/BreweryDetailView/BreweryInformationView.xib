@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brewery Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="0wu-mI-6pu">
-                    <rect key="frame" x="20" y="25" width="374" height="75"/>
+                    <rect key="frame" x="20" y="10" width="374" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="374" id="Tli-QW-bSy"/>
                         <constraint firstAttribute="height" constant="75" id="fcY-Uj-S0M"/>
@@ -33,7 +33,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbY-Fc-uPK">
-                    <rect key="frame" x="20" y="100" width="374" height="22"/>
+                    <rect key="frame" x="20" y="85" width="374" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="374" id="TbC-ut-NBL"/>
                         <constraint firstAttribute="height" constant="22" id="ewP-Io-GCv"/>
@@ -43,7 +43,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGL-Sf-tNN">
-                    <rect key="frame" x="20" y="130" width="374" height="21"/>
+                    <rect key="frame" x="20" y="115" width="374" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="374" id="4AD-k1-o0F"/>
                     </constraints>
@@ -80,7 +80,7 @@
                 <constraint firstItem="cGL-Sf-tNN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Kum-gi-bP2"/>
                 <constraint firstItem="gbY-Fc-uPK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="LhA-yn-QgA"/>
                 <constraint firstItem="0wu-mI-6pu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="YdQ-O3-rQe"/>
-                <constraint firstItem="0wu-mI-6pu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="YpX-4U-gKb"/>
+                <constraint firstItem="0wu-mI-6pu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="YpX-4U-gKb"/>
                 <constraint firstItem="hlJ-cy-OGb" firstAttribute="top" secondItem="n9I-v5-GDl" secondAttribute="bottom" constant="8" symbolic="YES" id="h7T-1s-W2H"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cGL-Sf-tNN" secondAttribute="trailing" constant="20" id="ist-yw-auP"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gbY-Fc-uPK" secondAttribute="trailing" constant="20" id="jX6-pE-NS3"/>

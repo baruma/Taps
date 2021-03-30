@@ -15,6 +15,7 @@ enum NetworkError: Error {
 }
 
 class BreweryDBResponseRepository: BreweryRepositoryProtocol {
+    
     func getBreweries(city: String) -> Promise<[Brewery]> {
         return Promise { seal in
         var cityString = (breweriesBaseEndpoint + cityBreweryEndpoint + "\(city)").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -52,11 +53,13 @@ class BreweryDBResponseRepository: BreweryRepositoryProtocol {
                 return
             }
             
+//            let str = String(decoding: data!, as: UTF8.self)
+//            print(str)
+            
             let desieralizedList = self.deserializeToBreweryAPIModel(response: data!)
             let mappedBreweries = self.mapper.mapToBrewery(listOfBreweries: desieralizedList)
             seal.fulfill(mappedBreweries)
         }
-            
             task.resume()
         }
     }
@@ -71,7 +74,7 @@ class BreweryDBResponseRepository: BreweryRepositoryProtocol {
     func fetchBreweriesAPIResponse(cityForEndpoint: String) {
         var cityString = (breweriesBaseEndpoint + cityBreweryEndpoint + "\(cityForEndpoint)").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         var cityStringAsURL = URL(string: cityString!)
-        
+
         let task = session.dataTask(with: cityStringAsURL!) { data, response, error in
 
             if error != nil || data == nil {
@@ -92,11 +95,10 @@ class BreweryDBResponseRepository: BreweryRepositoryProtocol {
             do {
                 let desieralizedList = self.deserializeToBreweryAPIModel(response: data!)
                 self.mapper.mapToBrewery(listOfBreweries: desieralizedList)
-//                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-//                print(json)
-                
-                // this needs to be an array of breweryapimodel
-               // mapper.mapToBrewery(listOfBreweries: data)
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                print(json)
+
+                self.mapper.mapToBrewery(listOfBreweries: desieralizedList)
             } catch {
                 print("JSON error: \(error.localizedDescription)")
             }
@@ -104,7 +106,7 @@ class BreweryDBResponseRepository: BreweryRepositoryProtocol {
 
         task.resume()
     }
-    
+
     // It is not advised to map in the convertToJSONResponse because it is doing too much now.
     // There is no sense of threading or async code since no networking is happening so there is no need for PromiseKit
     func deserializeToBreweryAPIModel(response: Data) -> [BreweryAPIModel] {
@@ -113,7 +115,14 @@ class BreweryDBResponseRepository: BreweryRepositoryProtocol {
         return listOfBreweries ?? [BreweryAPIModel]()
     }
     
+//    func deserializeToBreweryAPIModel(response: String) -> [BreweryAPIModel] {
+//        let responseInBytes: Data? = response.data(using: .utf8)
+//        let decoder = JSONDecoder()
+//        let listOfBreweries = try? decoder.decode([BreweryAPIModel].self, from: responseInBytes!)
+//        return listOfBreweries ?? [BreweryAPIModel]()
+//    }
+//
+//
     // Parses Brewery, City and State information from payload response.  This name is fine since it just lives in the view.
-    func breweryCellViewModel() {
-    }
+    func breweryCellViewModel() {}
 }

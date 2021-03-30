@@ -11,15 +11,15 @@ import Foundation
 class BreweryAPIModel: Codable {
     let id: Int
     let name: String
-    let breweryType: String
-    let city: String
-    let state: String
-    let postalCode: String
-    let country: String
-    let latitude: String
-    let longitude: String
-    let phone: String
-    let website: String
+    let breweryType: String?
+    let city: String?
+    let state: String?
+    let postalCode: String?
+    let country: String?
+    let latitude: String?
+    let longitude: String?
+    let phone: String?
+    let website: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -35,3 +35,26 @@ class BreweryAPIModel: Codable {
         case website = "website_url"
     }
 }
+
+
+/*
+ {
+   "id": 385,
+   "name": "Black Hammer Brewing",
+   "brewery_type": "micro",
+   "street": "544 Bryant St",
+   "address_2": null,
+   "address_3": null,
+   "city": "San Francisco",
+   "state": "California",
+   "county_province": null,
+   "postal_code": "94107-1217",
+   "country": "United States",
+   "longitude": "-122.3969947",
+   "latitude": "37.780655",
+   "phone": "4155002273",
+   "website_url": "http://www.blackhammerbrewing.com",
+   "updated_at": "2018-08-23T23:25:33.033Z",
+   "created_at": "2018-07-24T01:32:52.642Z"
+ },
+ */
