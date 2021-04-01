@@ -21,14 +21,14 @@ class MainCoordinator: Coordinator {
     
     func start() {
        window.rootViewController = rootViewController
-       let breweryTableViewVC = BreweryTableViewVC(nibName: nil, bundle: nil)
+       let breweryTableViewVC = BreweryTableVC(nibName: nil, bundle: nil)
        breweryTableViewVC.mainCoordinator = self
        rootViewController.pushViewController(breweryTableViewVC, animated: true)
        window.makeKeyAndVisible()
     }
     
     func goToDetailScreen(brewery: Brewery) {
-        let breweryDetailVC = BreweryDetailVC()
+        let breweryDetailVC = BreweryDetailTableVC()
         breweryDetailVC.brewery = brewery
         rootViewController.pushViewController(breweryDetailVC, animated: true)
     }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+#warning("DO NOT DELETE TILL YOU RECREATE PIPELINE.")
+
 class BreweryInformationView: UIView {
     
     @IBOutlet weak var breweryLabelOutlet: UILabel!

@@ -12,7 +12,7 @@ import PromiseKit
 class BreweryTablePresenter {
     var description: String = ""
    // private var breweriesForView = [Brewery]()
-    public var view: BreweryTableViewVC? = nil
+    public var view: BreweryTableVC? = nil
     
     /// TODO: - Attach and Detach functions need to be here.
     
@@ -21,7 +21,6 @@ class BreweryTablePresenter {
     
     func fetchBreweries(city: String) {
         breweryRepository.getBreweries(city: city).done { breweries in
-            //self.breweriesForView = breweries
             self.view?.updateViewWithBreweries(breweries: breweries)
         }
     }

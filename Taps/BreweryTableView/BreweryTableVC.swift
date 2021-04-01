@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class BreweryTableViewVC: UIViewController, CLLocationManagerDelegate {
+class BreweryTableVC: UIViewController, CLLocationManagerDelegate {
     weak var mainCoordinator: MainCoordinator? = nil
     
     // UI
@@ -47,13 +47,14 @@ class BreweryTableViewVC: UIViewController, CLLocationManagerDelegate {
     private func configureTableView() {
         tableView = UITableView(frame: view.bounds)
         view.addSubview(tableView)
+        tableView.separatorStyle = .singleLine
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(BreweryCell.self, forCellReuseIdentifier: BreweryCell.reuseID)
     }
 }
 
-extension BreweryTableViewVC {
+extension BreweryTableVC {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //let currentLocation: CLLocation = locations[0]
         
@@ -74,9 +75,9 @@ extension BreweryTableViewVC {
     }
 }
 
-extension BreweryTableViewVC: UITableViewDelegate {}
+extension BreweryTableVC: UITableViewDelegate {}
 
-extension BreweryTableViewVC: UITableViewDataSource {
+extension BreweryTableVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return breweries.count
     }

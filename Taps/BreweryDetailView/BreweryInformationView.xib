@@ -92,7 +92,7 @@
                 <constraint firstItem="gbY-Fc-uPK" firstAttribute="top" secondItem="0wu-mI-6pu" secondAttribute="bottom" id="yNs-dr-rnx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="402.89855072463769" y="-168.41517857142856"/>
+            <point key="canvasLocation" x="270" y="-173"/>
         </view>
     </objects>
     <resources>
