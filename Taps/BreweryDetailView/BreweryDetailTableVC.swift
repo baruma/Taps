@@ -22,7 +22,6 @@ class BreweryDetailTableVC: UIViewController {
         case starRating
         case generalNotes
         case BeerNotes // think about this one more...
-        case photoList
     }
     
     private func configureTableView() {
@@ -31,26 +30,35 @@ class BreweryDetailTableVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-       // tableView.register(BreweryInformationCell.self, forCellReuseIdentifier: BreweryInformationCell.reuseID)
-        //tableView.register(BreweryInformationCell.self, forCellWithReuseIdentifier: BreweryInformationCell.reuseID)
+        UIView.setAnimationsEnabled(false)
 
         let informationCell = UINib(nibName: BreweryInformationCell.reuseID, bundle: Bundle.main)
         tableView.register(informationCell, forCellReuseIdentifier: BreweryInformationCell.reuseID)
         
         let starRatingCell = UINib(nibName: "StarRatingCell", bundle: Bundle.main)
         tableView.register(starRatingCell, forCellReuseIdentifier: StarRatingCell.reuseID)
-    
+        
+        let generalNotesCell = UINib(nibName: "GeneralNotesCell", bundle: Bundle.main)
+        tableView.register(generalNotesCell, forCellReuseIdentifier: GeneralNotesCell.reuseID)
+
         tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 
     }
     
 }
 
+extension BreweryDetailTableVC: GeneralNotesCellDelegate {
+    func updateTextViewHeight() {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+}
+
 extension BreweryDetailTableVC: UITableViewDelegate {}
 
 extension BreweryDetailTableVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,6 +74,11 @@ extension BreweryDetailTableVC: UITableViewDataSource {
         case 1:
             let starRatingCell = tableView.dequeueReusableCell(withIdentifier: StarRatingCell.reuseID, for: indexPath) as! StarRatingCell
             return starRatingCell
+            
+        case 2:
+            let generalNotesCell = tableView.dequeueReusableCell(withIdentifier: GeneralNotesCell.reuseID, for: indexPath) as! GeneralNotesCell
+            generalNotesCell.delegate = self
+            return generalNotesCell
             
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UITableViewCell
